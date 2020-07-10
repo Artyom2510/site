@@ -1,0 +1,17 @@
+.header {
+	display: block;
+	width: 100%;
+	background-color: skyblue;
+
+	&__menu {
+		margin: 0;
+	}
+}
+
+.header-menu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+	list-style: none;
+}
