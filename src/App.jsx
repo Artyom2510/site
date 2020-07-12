@@ -12,6 +12,8 @@ export default class App extends Component {
 
 	apiService = new ApiService();
 
+	cnt = 2
+
 	constructor() {
 		super();
 		this.cardInfo();
@@ -19,18 +21,31 @@ export default class App extends Component {
 
 	state = {
 		cards: [],
-		text: 'а'
+		searchText: "",
+		amoutCards: 6
 	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', this.onScroll);
+	};
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.onScroll);
+	};
 
 	cardInfo() {
 		this.apiService
 			.getAllPeople()
 			.then(cards => {
 					this.setState({
-						cards,
-						search: ""
+						cards
 					});
 			});
+	}
+
+	sliceCards(cards) {
+		const {amoutCards} = this.state;
+		return cards.slice(0, amoutCards);
 	}
 
 	onSearch = (cards, text) => {
@@ -38,39 +53,38 @@ export default class App extends Component {
 			return cards;
 		}
 		return cards.filter(card => {
-			console.log(card.title.toLowerCase().indexOf(text.toLowerCase()) > -1)
-			return card.title.toLowerCase().indexOf(text.toLowerCase()) > -1;
+			const {title, desc} = card;
+			return title.toLowerCase().indexOf(text.toLowerCase()) > -1 || desc.toLowerCase().indexOf(text.toLowerCase()) > -1;
 		});
 	}
 
 	onSearchChange = (text) => {
-		this.setState(prevState => {
-			const cards = prevState.cards.map(card => {
-				return {
-					...card,
-					term: text
-				}
-			});
-			return {
-				...prevState,
-				cards
-			};
+		this.setState({
+			searchText: text
 		});
 	}
 
-	render() {
-		const {cards, text} = this.state;
+	onScroll = () => {
+		if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+			this.setState(({ amoutCards, cards }) => {
+				return {
+					amoutCards: amoutCards + this.cnt <= cards.length ? amoutCards + this.cnt : cards.length
+				}
+			});
+	 }
+	}
 
-		const filterCards = () => {
-			return this.onSearch(cards, text);
-		}
+	render() {
+		const {cards, searchText} = this.state;
+		
+		const filterCards = this.onSearch(this.sliceCards(cards), searchText);
 		return (
 			<>
 				<Router>
 					<Header />
 					<Switch>
 						<Route path="/contacts" component={Contacts} />
-						<BlockCards cards={filterCards} onSearch={this.onSearch} />
+						<BlockCards cards={filterCards} onSearchChange={this.onSearchChange} />
 					</Switch>
 				</Router>
 			</>

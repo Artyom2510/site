@@ -11,8 +11,8 @@ export default class Search extends Component {
 	onSearchValueChange = (e) => {
 		const text = e.target.value;
 		this.setState({ text });
-		const {onSearch} = this.props;
-		onSearch(text);
+		const {onSearchChange} = this.props;
+		onSearchChange(text);
 	}
 
 	render() {

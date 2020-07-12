@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import ApiService from '../../services/apiServices';
 import Search from '../Search';
 
 import './index.scss';
@@ -15,7 +14,7 @@ export default class BlockCards extends Component {
 			<a href="#" className="block-cards__card card" key={id}>
 				<h1 className="card__title"> {title} </h1>
 				<p className="card__desc"> {desc} </p>
-				<label className={`${labelClass} ${labelClass}_${type}`}> {label} </label>
+				<label className={`${labelClass} ${labelClass}_${type}`}> {label}-{type} </label>
 				<span className="card__price"> {price} </span>
 			</a>
 		)
@@ -23,15 +22,15 @@ export default class BlockCards extends Component {
 
 	render() {
 
-		const {filterCards, onSearch} = this.props;
-		// const renderCards = filterCards.map(card => {
-		// 	return this.createCard(card);
-		// });
+		const {cards, onSearchChange} = this.props;
+		const renderCards = cards.map(card => {
+			return this.createCard(card);
+		});
 
 		return (
 			<section className="block-cards">
-				<Search onSearch={onSearch} />
-				{/* {renderCards} */}
+				<Search onSearchChange={onSearchChange} />
+				{renderCards}
 			</section>
 		);
 	}
