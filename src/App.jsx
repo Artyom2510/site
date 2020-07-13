@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Header from './components/Header';
 import BlockCards from './components/BlockCards';
-import Contacts from './pages/Contacts';
+import ContactsNative from './pages/contacts/ContactsNative';
+import ContactsReactYandexMaps from './pages/contacts/ContactsReactYandexMaps';
 
 import ApiService from './services/apiServices';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -83,7 +84,8 @@ export default class App extends Component {
 				<Router>
 					<Header />
 					<Switch>
-						<Route path="/contacts" component={Contacts} />
+						<Route path="/contacts" component={ContactsNative} />
+						<Route path="/contacts-react-npm" component={ContactsReactYandexMaps} />
 						<BlockCards cards={filterCards} onSearchChange={this.onSearchChange} />
 					</Switch>
 				</Router>
