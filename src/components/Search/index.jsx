@@ -8,6 +8,13 @@ export default class Search extends Component {
 		text: ''
 	}
 
+	componentDidMount() {
+		const {text} = this.props;
+		if (text.length) {
+			this.setState({ text });
+		}
+	}
+
 	onSearchValueChange = (e) => {
 		const text = e.target.value;
 		this.setState({ text });
@@ -24,7 +31,7 @@ export default class Search extends Component {
 				name="name-search"
 				type="search"
 				value={text}
-				className="find"
+				className="block-cards__input find"
 				placeholder='Search'
 				onChange={this.onSearchValueChange}
 			/>

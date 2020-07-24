@@ -1,0 +1,58 @@
+.info {
+	display: block;
+	padding: 100px 50px;
+
+	&__title {
+		display: block;
+		width: 100%;
+		margin: 0 0 36px;
+		text-align: center;
+
+		span {
+			color: #087018;
+		}
+	}
+
+	&__ava {
+		margin: 0 auto 48px;
+	}
+
+	&__period {
+		display: block;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+		font-size: 24px;
+		line-height: 28px;
+
+		span {
+			color: #087018;
+		}
+	}
+}
+
+.ava {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 128px;
+	height: 128px;
+	border-radius: 50%;
+	overflow: hidden;
+
+	&__grch {
+		display: block;
+		width: 72px;
+		height: 72px;
+		object-fit: contain;
+		object-position: 50% 50%;
+	}
+
+	&__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: 50% 50%;
+	}
+}

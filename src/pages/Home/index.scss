@@ -1,0 +1,15 @@
+.block-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 10px;
+
+	&__input {
+		margin: 10px auto;
+	}
+
+	&__card {
+		position: relative;
+		margin-bottom: 10px;
+	}
+}

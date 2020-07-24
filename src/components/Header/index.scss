@@ -15,4 +15,12 @@
 	height: 40px;
 	padding: 0;
 	list-style: none;
+
+	&__item {
+		margin-right: 20px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 }
